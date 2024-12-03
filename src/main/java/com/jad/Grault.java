@@ -1,7 +1,13 @@
 package com.jad;
 
 public class Grault {
-    public Foo getFoo() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+   private Foo foo;
+
+   public Foo getFoo() {
+       return foo;
+   }
+
+   public Grault(Foo foo) {
+       this.foo = foo;
+   }
 }

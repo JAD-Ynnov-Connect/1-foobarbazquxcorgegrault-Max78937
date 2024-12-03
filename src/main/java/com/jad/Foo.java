@@ -1,40 +1,66 @@
 package com.jad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Foo {
+
+    private Bar bar;
+    private List<Baz> bazs = new ArrayList<>();
+    private Qux qux;
+    private Corge corge;
+    private List<Grault> graults = new ArrayList<>();
+
     public Foo(final Bar bar) {
+        this.bar = bar;
+        this.qux = new Qux();
+
     }
 
     public Bar getBar() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    public List<Baz> getBazs() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    public void addBaz(final Baz baz) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    public Qux getQux() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return bar;
     }
 
     public List<Grault> getGraults() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    public void addGrault() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return graults;
     }
 
     public Corge getCorge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return corge;
+    }
+
+    public Qux getQux() {
+        return qux;
+    }
+
+    public List<Baz> getBazs() {
+        return bazs;
+    }
+
+    public void addBaz(final Baz baz) {
+        bazs.add(baz);
+    }
+
+    public void addGrault() {
+        graults.add(new Grault(this));
     }
 
     public void setCorge(final Corge firstCorge) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.corge = corge;
+        if (this.corge == firstCorge) {
+            return;
+        }
+
+        if (this.corge != null) {
+            Corge oldCorge = this.corge;
+            this.corge = null;
+            oldCorge.setFoo(null);
+        }
+
+        this.corge = firstCorge;
+        if (firstCorge != null && firstCorge.getFoo() != this) {
+            firstCorge.setFoo(this);
+        }
     }
+
 }
